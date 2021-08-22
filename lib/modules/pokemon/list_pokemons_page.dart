@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokeapp/models/pokeApi_model.dart';
 import 'package:pokeapp/modules/pokemon/details_pokemon_page.dart';
 import 'package:pokeapp/resources/pokemon_servicos.dart';
 import 'package:pokeapp/styles/components/color_type.dart';
+import 'package:pokeapp/styles/components/common_widgets.dart';
 
 // ignore: must_be_immutable
 class ListPokemonsPage extends StatefulWidget {
@@ -42,22 +44,11 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
+        appBar: buildAppBar(),
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(
-                height: 70,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/pokemon_logo.png'),
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 110),
+              padding: const EdgeInsets.only(top: 20),
               child: ListView.builder(
                   controller: _scrollController,
                   shrinkWrap: true,
@@ -136,13 +127,6 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
                 : SizedBox()
           ],
         ));
-  }
-
-  Widget buildText(String text) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: 25, color: Colors.white),
-    );
   }
 
   fetch() async {

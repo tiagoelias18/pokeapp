@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokeapp/models/pokemon_model.dart';
 import 'package:pokeapp/styles/colors.dart' as Col;
 
 Color colorByType(String mainType) {

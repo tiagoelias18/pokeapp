@@ -5,18 +5,14 @@ class CarregaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).primaryColor,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.05),
-              child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
-            )
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("assets/pokemon_logo.png"),
+          SizedBox(height: 50),
+          CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+        ],
       ),
     );
   }
