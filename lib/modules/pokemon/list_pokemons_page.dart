@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokeapp/models/pokeApi_model.dart';
 import 'package:pokeapp/modules/pokemon/details_pokemon_page.dart';
 import 'package:pokeapp/resources/pokemon_servicos.dart';
+import 'package:pokeapp/styles/components/carrega_page.dart';
 import 'package:pokeapp/styles/components/color_type.dart';
 import 'package:pokeapp/styles/components/common_widgets.dart';
 
@@ -19,6 +19,7 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
   PokeApi listPokemons = PokeApi();
   ScrollController _scrollController = ScrollController();
   bool _loading = false;
+  TextEditingController _tecSearch = TextEditingController();
 
   @override
   void initState() {
@@ -48,7 +49,37 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(
+                  left: width * 0.04, right: width * 0.04, top: 20),
+              child: Container(
+                padding: EdgeInsets.only(left: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 40,
+                child: TextField(
+                  controller: _tecSearch,
+                  cursorColor: Theme.of(context).primaryColor,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: "Find your Pokémon",
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () async {
+                        await searchPokemon(_tecSearch.text.toLowerCase());
+                      },
+                    ),
+                  ),
+                  onEditingComplete: () async {
+                    await searchPokemon(_tecSearch.text.toLowerCase());
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 70),
               child: ListView.builder(
                   controller: _scrollController,
                   shrinkWrap: true,
@@ -133,12 +164,39 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
     setState(() {
       _loading = true;
     });
-    await PokemonServicos.getPokemons(listPokemons.next!).then((value) {
-      listPokemons.next = value.next;
-      listPokemons.previous = value.previous;
-      listPokemons.results = [...listPokemons.results!, ...value.results!];
-      _loading = false;
-      setState(() {});
+    listPokemons.next == null
+        ? showMyDialog(
+            context, "End of list", "Congratulations, you found all pokémons.")
+        : await PokemonServicos.getPokemons(listPokemons.next!).then((value) {
+            if (value.next == null) {
+              showMyDialog(context, "Network error",
+                  "There was an error in your connection or connection with Api. Try again later.");
+            } else {
+              listPokemons.next = value.next;
+              listPokemons.previous = value.previous;
+              listPokemons.results = [
+                ...listPokemons.results!,
+                ...value.results!
+              ];
+            }
+            _loading = false;
+            setState(() {});
+          });
+  }
+
+  searchPokemon(String namePokemon) async {
+    FocusScope.of(context).unfocus();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CarregaPage()));
+    await PokemonServicos.getSpecificPokemon(namePokemon).then((value) {
+      Navigator.pop(context);
+      value.name == null
+          ? showMyDialog(
+              context, "Search Error", "Pokémon not found, try again.")
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailsPokemonPage(value)));
     });
   }
 }
