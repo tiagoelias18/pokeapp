@@ -28,7 +28,7 @@ class Pokemon {
     weight = json['weight'];
     baseExperience = json['base_experience'];
     frontDefault =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png";
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png";
     if (json['types'] != null) {
       types = [];
       json['types'].forEach((v) {

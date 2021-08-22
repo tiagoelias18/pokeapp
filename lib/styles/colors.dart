@@ -1,0 +1,20 @@
+import 'package:flutter/material.dart';
+
+const typeBug = const Color(0xFF8CB230);
+const typeDark = const Color(0xFF58575F);
+const typeDragon = const Color(0xFF0F6AC0);
+const typeElectric = const Color(0xFF1EED535);
+const typeFairy = const Color(0xFFED6EC7);
+const typeFighting = const Color(0xFFD04164);
+const typeFire = const Color(0xFFFD7D24);
+const typeFlying = const Color(0xFF748FC9);
+const typeGhost = const Color(0xFF556AAE);
+const typeGrass = const Color(0xFF62B957);
+const typeGround = const Color(0xFFDD7748);
+const typeIce = const Color(0xFF61CEC0);
+const typeNormal = const Color(0xFF9DA0AA);
+const typePoison = const Color(0xFFA552CC);
+const typePsychic = const Color(0xFFEA5D60);
+const typeRock = const Color(0xFFBAAB82);
+const typeSteel = const Color(0xFF417D9A);
+const typeWater = const Color(0xFF4A90DA);
