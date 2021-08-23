@@ -132,8 +132,15 @@ class _ListPokemonsPageState extends State<ListPokemonsPage> {
                                     Container(
                                       constraints:
                                           BoxConstraints.tightFor(height: 125),
-                                      child: Image.network(listPokemons
-                                          .results![index].frontDefault!),
+                                      child: Image.network(
+                                        listPokemons
+                                            .results![index].frontDefault!,
+                                        errorBuilder:
+                                            (context, exception, stackTrack) =>
+                                                Icon(
+                                          Icons.error,
+                                        ),
+                                      ),
                                     ),
                                     buildText("#" +
                                         listPokemons.results![index].id!

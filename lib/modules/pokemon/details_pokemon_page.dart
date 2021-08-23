@@ -45,7 +45,12 @@ class DetailsPokemonPage extends StatelessWidget {
                     SizedBox(height: 20),
                     Container(
                       constraints: BoxConstraints.tightFor(height: 200),
-                      child: Image.network(pokemon.frontDefault!),
+                      child: Image.network(
+                        pokemon.frontDefault!,
+                        errorBuilder: (context, exception, stackTrack) => Icon(
+                          Icons.error,
+                        ),
+                      ),
                     ),
                     SizedBox(height: 10),
                     buildText("Main type: " + pokemon.types![0].type!.name!.toUpperCase()),
