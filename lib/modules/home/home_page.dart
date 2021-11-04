@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokeapp/models/pokeApi_model.dart';
-import 'package:pokeapp/modules/pokemon/list_pokemons_page.dart';
+import 'package:pokeapp/modules/pokemon_list/list_pokemons_page.dart';
 import 'package:pokeapp/resources/pokemon_servicos.dart';
 import 'package:pokeapp/styles/components/carrega_page.dart';
 import 'package:pokeapp/styles/components/network_error_page.dart';

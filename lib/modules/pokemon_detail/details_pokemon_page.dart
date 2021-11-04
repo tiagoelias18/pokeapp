@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokeapp/models/pokemon_model.dart';
+import 'package:pokeapp/modules/pokemon_detail/widgets/infos_box.dart';
 import 'package:pokeapp/styles/components/color_type.dart';
 import 'package:pokeapp/styles/components/common_widgets.dart';
 
@@ -58,41 +59,16 @@ class DetailsPokemonPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildInfoBox(context, "Height", (pokemon.height!/10).toString() + " m"),
-                        buildInfoBox(context, "Width", (pokemon.weight!/10).toString() + " kg")
+                        InfosBox(title: "Height", text: (pokemon.height!/10).toString() + " m"),
+                        InfosBox(title: "Width", text: (pokemon.weight!/10).toString() + " kg")
                       ],
                     ),
                     SizedBox(height: 20),
-                    buildInfoBox(context, "Exp", (pokemon.baseExperience).toString()),
+                    InfosBox(title: "Exp", text: (pokemon.baseExperience).toString())
                   ],
                 )),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildInfoBox(BuildContext context, String title, String text) {
-    return Container(
-      height: 60,
-      width: 100,
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          Text(
-            text,
-            style: TextStyle(fontSize: 18, color: Colors.white),
-          ),
-        ],
       ),
     );
   }

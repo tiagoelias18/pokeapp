@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokeapp/styles/components/common_widgets.dart';
 
 class CarregaPage extends StatelessWidget {
   @override
@@ -10,8 +11,7 @@ class CarregaPage extends StatelessWidget {
         children: [
           Image.asset("assets/pokemon_logo.png"),
           SizedBox(height: 50),
-          CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+          loadWidget()
         ],
       ),
     );

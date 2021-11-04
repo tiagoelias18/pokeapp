@@ -11,8 +11,14 @@ AppBar buildAppBar() {
 Text buildText(String text) {
   return Text(
     text,
-    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+    style: TextStyle(
+        fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
   );
+}
+
+Widget loadWidget() {
+  return CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.white));
 }
 
 Future<void> showMyDialog(
